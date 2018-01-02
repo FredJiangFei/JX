@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ApplicationManifest xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" ApplicationTypeName="JXType" ApplicationTypeVersion="1.0.0" xmlns="http://schemas.microsoft.com/2011/01/fabric">
+  <Parameters>
+    <Parameter Name="Customer_MinReplicaSetSize" DefaultValue="3" />
+    <Parameter Name="Customer_PartitionCount" DefaultValue="1" />
+    <Parameter Name="Customer_TargetReplicaSetSize" DefaultValue="3" />
+    <Parameter Name="Web_InstanceCount" DefaultValue="-1" />
+    <Parameter Name="ProductActorService_PartitionCount" DefaultValue="26" />
+    <Parameter Name="ProductActorService_MinReplicaSetSize" DefaultValue="3" />
+    <Parameter Name="ProductActorService_TargetReplicaSetSize" DefaultValue="3" />
+  </Parameters>
+  <!--ServiceManifestImports
+    在 ServiceManifestImport 中，可以重写 Settings.xml 中的配置值
+    和 ServiceManifest.xml 文件中的环境变量-->
+  <ServiceManifestImport>
+    <ServiceManifestRef ServiceManifestName="JX.CustomerPkg" ServiceManifestVersion="1.0.0" />
+    <ConfigOverrides />
+  </ServiceManifestImport>
+  <ServiceManifestImport>
+    <ServiceManifestRef ServiceManifestName="JX.ProductPkg" ServiceManifestVersion="1.0.0" />
+  </ServiceManifestImport>
+  <ServiceManifestImport>
+    <ServiceManifestRef ServiceManifestName="JX.WebPkg" ServiceManifestVersion="1.0.0" />
+    <ConfigOverrides />
+  </ServiceManifestImport>
+  <DefaultServices>
+    <Service Name="Customer">
+      <StatefulService ServiceTypeName="CustomerType" TargetReplicaSetSize="[Customer_TargetReplicaSetSize]" MinReplicaSetSize="[Customer_MinReplicaSetSize]">
+        <UniformInt64Partition PartitionCount="[Customer_PartitionCount]" LowKey="-9223372036854775808" HighKey="9223372036854775807" />
+      </StatefulService>
+    </Service>
+    <Service Name="Web">
+      <StatelessService ServiceTypeName="WebType" InstanceCount="[Web_InstanceCount]">
+        <SingletonPartition />
+      </StatelessService>
+    </Service>
+    <Service Name="ProductActorService" GeneratedIdRef="0c56d371-285b-4d82-8199-e81bb0e5babd|Persisted">
+      <StatefulService ServiceTypeName="ProductActorServiceType" TargetReplicaSetSize="[ProductActorService_TargetReplicaSetSize]" MinReplicaSetSize="[ProductActorService_MinReplicaSetSize]">
+        <UniformInt64Partition PartitionCount="[ProductActorService_PartitionCount]" LowKey="-9223372036854775808" HighKey="9223372036854775807" />
+      </StatefulService>
+    </Service>
+  </DefaultServices>
+</ApplicationManifest>
