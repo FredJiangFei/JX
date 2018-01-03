@@ -5,13 +5,11 @@ VisualStudioVersion = 15.0.26430.16
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{A07B5EB6-E848-4116-A8D0-A826331D98C6}") = "JX", "JX\JX.sfproj", "{35D40F0B-1F35-4CFE-B9C2-C6E983F47778}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JX.Web", "JX.Web\JX.Web.csproj", "{8DBBA922-0D8E-45BA-9980-9AB2052E9FA4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JX.Web", "JX.Web\JX.Web.csproj", "{8DBBA922-0D8E-45BA-9980-9AB2052E9FA4}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JX.Product", "JX.Product\JX.Product.csproj", "{0380A1BC-A39C-4E8A-92B3-6B93B911C0D2}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JX.Product.Interfaces", "JX.Product.Interfaces\JX.Product.Interfaces.csproj", "{214BA731-828B-4DCF-ACF8-19BFCAE98AE2}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JX.Customer", "JX.Customer\JX.Customer.csproj", "{DB7CB92B-C8B4-4648-8CF5-FDB9833D784B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -49,12 +47,6 @@ Global
 		{214BA731-828B-4DCF-ACF8-19BFCAE98AE2}.Release|Any CPU.ActiveCfg = Release|x64
 		{214BA731-828B-4DCF-ACF8-19BFCAE98AE2}.Release|x64.ActiveCfg = Release|x64
 		{214BA731-828B-4DCF-ACF8-19BFCAE98AE2}.Release|x64.Build.0 = Release|x64
-		{DB7CB92B-C8B4-4648-8CF5-FDB9833D784B}.Debug|Any CPU.ActiveCfg = Debug|x64
-		{DB7CB92B-C8B4-4648-8CF5-FDB9833D784B}.Debug|x64.ActiveCfg = Debug|x64
-		{DB7CB92B-C8B4-4648-8CF5-FDB9833D784B}.Debug|x64.Build.0 = Debug|x64
-		{DB7CB92B-C8B4-4648-8CF5-FDB9833D784B}.Release|Any CPU.ActiveCfg = Release|x64
-		{DB7CB92B-C8B4-4648-8CF5-FDB9833D784B}.Release|x64.ActiveCfg = Release|x64
-		{DB7CB92B-C8B4-4648-8CF5-FDB9833D784B}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
