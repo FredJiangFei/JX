@@ -30,6 +30,8 @@
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\JX.Calculate\JX.Calculate.csproj" />
+    <ProjectReference Include="..\JX.Customer\JX.Customer.csproj" />
     <ProjectReference Include="..\JX.Product\JX.Product.csproj" />
     <ProjectReference Include="..\JX.Web\JX.Web.csproj" />
   </ItemGroup>

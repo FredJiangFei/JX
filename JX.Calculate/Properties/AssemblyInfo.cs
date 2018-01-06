@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("JX.Customer")]
+[assembly: AssemblyTitle("JX.Calculate")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("JX.Customer")]
+[assembly: AssemblyProduct("JX.Calculate")]
 [assembly: AssemblyCopyright("Copyright ©  2018")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("3a2540b8-fdd8-4806-9bc1-c8761a3666bf")]
+[assembly: Guid("a80cd877-5670-45b4-90a4-9c4c711ec7e2")]
 
 // Version information for an assembly consists of the following four values:
 //

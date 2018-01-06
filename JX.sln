@@ -11,6 +11,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JX.Product", "JX.Product\JX
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JX.Product.Interfaces", "JX.Product.Interfaces\JX.Product.Interfaces.csproj", "{214BA731-828B-4DCF-ACF8-19BFCAE98AE2}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JX.Customer", "JX.Customer\JX.Customer.csproj", "{3A2540B8-FDD8-4806-9BC1-C8761A3666BF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JX.Calculate", "JX.Calculate\JX.Calculate.csproj", "{A80CD877-5670-45B4-90A4-9C4C711EC7E2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -47,6 +51,18 @@ Global
 		{214BA731-828B-4DCF-ACF8-19BFCAE98AE2}.Release|Any CPU.ActiveCfg = Release|x64
 		{214BA731-828B-4DCF-ACF8-19BFCAE98AE2}.Release|x64.ActiveCfg = Release|x64
 		{214BA731-828B-4DCF-ACF8-19BFCAE98AE2}.Release|x64.Build.0 = Release|x64
+		{3A2540B8-FDD8-4806-9BC1-C8761A3666BF}.Debug|Any CPU.ActiveCfg = Debug|x64
+		{3A2540B8-FDD8-4806-9BC1-C8761A3666BF}.Debug|x64.ActiveCfg = Debug|x64
+		{3A2540B8-FDD8-4806-9BC1-C8761A3666BF}.Debug|x64.Build.0 = Debug|x64
+		{3A2540B8-FDD8-4806-9BC1-C8761A3666BF}.Release|Any CPU.ActiveCfg = Release|x64
+		{3A2540B8-FDD8-4806-9BC1-C8761A3666BF}.Release|x64.ActiveCfg = Release|x64
+		{3A2540B8-FDD8-4806-9BC1-C8761A3666BF}.Release|x64.Build.0 = Release|x64
+		{A80CD877-5670-45B4-90A4-9C4C711EC7E2}.Debug|Any CPU.ActiveCfg = Debug|x64
+		{A80CD877-5670-45B4-90A4-9C4C711EC7E2}.Debug|x64.ActiveCfg = Debug|x64
+		{A80CD877-5670-45B4-90A4-9C4C711EC7E2}.Debug|x64.Build.0 = Debug|x64
+		{A80CD877-5670-45B4-90A4-9C4C711EC7E2}.Release|Any CPU.ActiveCfg = Release|x64
+		{A80CD877-5670-45B4-90A4-9C4C711EC7E2}.Release|x64.ActiveCfg = Release|x64
+		{A80CD877-5670-45B4-90A4-9C4C711EC7E2}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

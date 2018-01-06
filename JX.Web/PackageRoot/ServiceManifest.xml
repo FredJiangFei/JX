@@ -1,12 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<!--Version 版本升级-->
 <ServiceManifest Name="JX.WebPkg"
                  Version="1.0.0"
                  xmlns="http://schemas.microsoft.com/2011/01/fabric"
                  xmlns:xsd="http://www.w3.org/2001/XMLSchema"
                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 
-    <!--声明 CodePackages 支持的服务类型-->
     <ServiceTypes>
         <StatelessServiceType ServiceTypeName="WebType" />
     </ServiceTypes>
@@ -18,15 +16,11 @@
                 <WorkingFolder>CodePackage</WorkingFolder>
             </ExeHost>
         </EntryPoint>
-        <!--为此代码包设置的环境变量列表。 
-        环境变量可以在 ApplicationManifest.xml 中重写，
-        以便为不同的服务实例提供不同的值-->
         <EnvironmentVariables>
             <EnvironmentVariable Name="MyEnvVariable" Value="123"/>
         </EnvironmentVariables>
     </CodePackage>
 
-    <!--Config文件夹-->
     <ConfigPackage Name="Config" Version="1.0.0" />
 
     <Resources>

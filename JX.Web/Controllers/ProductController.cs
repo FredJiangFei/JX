@@ -4,6 +4,7 @@ using System.Fabric;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using JX.Calculate;
 using JX.Product.Interfaces;
 using JX.Web.Command;
 using JX.Web.Mapper;
@@ -12,6 +13,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.ServiceFabric.Actors;
 using Microsoft.ServiceFabric.Actors.Client;
 using Microsoft.ServiceFabric.Actors.Query;
+using Microsoft.ServiceFabric.Services.Remoting.Client;
 
 namespace JX.Web.Controllers
 {
@@ -80,7 +82,7 @@ namespace JX.Web.Controllers
             product.Id = id;
             return View(product);
         }
-
+      
         [HttpPost]
         public async Task<IActionResult> Edit(ProductCommand command)
         {
@@ -97,6 +99,24 @@ namespace JX.Web.Controllers
             var proxy = ActorServiceProxy.Create(new Uri(serviceUri), actorToDelete);
             await proxy.DeleteActorAsync(actorToDelete, CancellationToken.None);
             return RedirectToAction("Index");
+        }
+
+        public IActionResult Detail(Guid id)
+        {
+            var proxy = GetProxy(new ActorId(id));
+            var product = proxy.Get().Result.ToCommand();
+            product.Id = id;
+            return View(product);
+        }
+
+        public async Task<IActionResult> CalculateTotalPrice(int unitPrice, int count)
+        {
+            var serviceUri = this._serviceContext.CodePackageActivationContext.ApplicationName
+                             + "/Calculate";
+            var proxy = ServiceProxy.Create<ICalculate>(new Uri(serviceUri));
+            var totalPrice = await proxy.CalculatePriceAsync(unitPrice, count);
+
+            return this.Json(totalPrice);
         }
 
         private IProduct GetProxy(ActorId actorId)

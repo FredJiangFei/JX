@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Diagnostics;
+using System.Fabric;
 using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.ServiceFabric.Services.Runtime;
 
-namespace JX.Customer
+namespace JX.Calculate
 {
     internal static class Program
     {
@@ -12,10 +13,11 @@ namespace JX.Customer
         {
             try
             {
-                ServiceRuntime.RegisterServiceAsync("CustomerType",
-                    context => new Customer(context)).GetAwaiter().GetResult();
+                ServiceRuntime.RegisterServiceAsync("CalculateType",
+                    context => new Calculate(context)).GetAwaiter().GetResult();
 
-                ServiceEventSource.Current.ServiceTypeRegistered(Process.GetCurrentProcess().Id, typeof(Customer).Name);
+                ServiceEventSource.Current.ServiceTypeRegistered(Process.GetCurrentProcess().Id, typeof(Calculate).Name);
+
                 Thread.Sleep(Timeout.Infinite);
             }
             catch (Exception e)

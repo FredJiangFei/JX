@@ -10,23 +10,27 @@
         <tr>
             <th>Id</th>
             <th>Name</th>
-            <th>Address</th>
+            <th>Price</th>
             <th></th>
         </tr>
     </thead>
 
-    @foreach (var company in Model)
+    @foreach (var p in Model)
     {
         <tr>
-            <td>@company.Id</td>
-            <td>@company.Name</td>
-            <td>@company.Price</td>
+            <td>@p.Id</td>
+            <td>@p.Name</td>
+            <td>@p.Price</td>
             <td>
                 <div class="col-md-6">
-                    @Html.ActionLink("Edit", "Edit", "Product", new { id = company.Id }, new { @class = "btn btn-primary" })
+                    @Html.ActionLink("Detail", "Detail", "Product", new { id = p.Id }, new { @class = "btn btn-primary" })
+                </div> 
+                
+                <div class="col-md-6">
+                    @Html.ActionLink("Edit", "Edit", "Product", new { id = p.Id }, new { @class = "btn btn-primary" })
                 </div>
                 <div class="col-md-6">
-                    @using (Html.BeginForm("Delete", "Product", new { id = company.Id }, FormMethod.Post))
+                    @using (Html.BeginForm("Delete", "Product", new { id = p.Id }, FormMethod.Post))
                     {
                         <button class="btn btn-danger" type="submit">Delete</button>
                     }

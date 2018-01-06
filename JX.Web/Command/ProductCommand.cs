@@ -14,5 +14,8 @@ namespace JX.Web.Command
 
         [DataMember]
         public int Price { get; set; }
+
+        [DataMember]
+        public int Count { get; set; }
     }
 }
