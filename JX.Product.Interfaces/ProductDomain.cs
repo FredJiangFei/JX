@@ -6,13 +6,20 @@ namespace JX.Product
     [DataContract]
     public class ProductDomain
     {
-        [DataMember]
-        public Guid Id { get; set; }
+        public ProductDomain(Guid id, string name, int price)
+        {
+            Id = id;
+            Name = name;
+            Price = price;
+        }
 
         [DataMember]
-        public string Name { get; set; }
+        public readonly Guid Id;
 
         [DataMember]
-        public int Price { get; set; }
+        public readonly string Name;
+
+        [DataMember]
+        public readonly int Price;
     }
 }

@@ -7,12 +7,7 @@ namespace JX.Web.Mapper
     {
         public static ProductDomain ToDomain(this ProductCommand command)
         {
-            return new ProductDomain
-            {
-                Id = command.Id,
-                Name = command.Name,
-                Price = command.Price
-            };
+            return new ProductDomain(command.Id, command.Name, command.Price);
         }
     }
 }

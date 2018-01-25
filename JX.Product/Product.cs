@@ -1,5 +1,4 @@
-﻿using System;
-using System.Threading;
+﻿using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.ServiceFabric.Actors;
 using Microsoft.ServiceFabric.Actors.Runtime;
@@ -26,7 +25,7 @@ namespace JX.Product
 
         public async Task Create(ProductDomain product, CancellationToken token)
         {
-            await StateManager.TryAddStateAsync<ProductDomain>(StateName, product, token);
+            await StateManager.AddStateAsync(StateName, product, token);
         }
 
         public async Task Update(ProductDomain product, CancellationToken token)

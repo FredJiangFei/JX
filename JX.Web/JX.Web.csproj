@@ -30,5 +30,8 @@
       <HintPath>..\packages\Microsoft.ServiceFabric.Actors.2.5.216\lib\net45\Microsoft.ServiceFabric.Actors.dll</HintPath>
     </Reference>
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Views\Calculate\" />
+  </ItemGroup>
 
 </Project>

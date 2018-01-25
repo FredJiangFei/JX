@@ -13,8 +13,9 @@ namespace JX.Calculate
         {
             try
             {
-                ServiceRuntime.RegisterServiceAsync("CalculateType",
-                    context => new Calculate(context)).GetAwaiter().GetResult();
+                // 当创建 类型为 CalculateType 的服务时， 返回 Calculate 的实例
+                ServiceRuntime.RegisterServiceAsync("CalculateType",context => new Calculate(context))
+                    .GetAwaiter().GetResult();
 
                 ServiceEventSource.Current.ServiceTypeRegistered(Process.GetCurrentProcess().Id, typeof(Calculate).Name);
 

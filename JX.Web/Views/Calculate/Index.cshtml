@@ -1,0 +1,9 @@
+﻿
+<div class="row">
+    @using (Html.BeginForm("Plus", "Calculate", FormMethod.Post))
+    {
+        @Html.TextBox("a");
+        @Html.TextBox("b");
+        <input type="submit" value="Calculate">
+    }
+</div>
