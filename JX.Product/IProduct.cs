@@ -8,8 +8,8 @@ namespace JX.Product
     {
         Task<ProductDomain> Get();
 
-        Task Create(ProductDomain command, CancellationToken token);
+        Task Create(ProductDomain product, CancellationToken token);
 
-        Task Update(ProductDomain command, CancellationToken token);
+        Task Update(ProductDomain product, CancellationToken token);
     }
 }
