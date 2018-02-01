@@ -1,5 +1,8 @@
 ﻿@model List<JX.Web.ViewModels.ProductViewModel>
 
+<div class="row">
+    <h1>List</h1>
+</div>
 
 <div class="row">
     @Html.ActionLink("Create", "Create", "Product")
@@ -11,6 +14,8 @@
             <th>Id</th>
             <th>Name</th>
             <th>Price</th>
+            <th>Count</th>
+            <th>Total Price</th>
             <th></th>
         </tr>
     </thead>
@@ -21,11 +26,9 @@
             <td>@p.Id</td>
             <td>@p.Name</td>
             <td>@p.Price</td>
+            <td>@p.Count</td>
+            <td>@p.TotalPrice</td>
             <td>
-                <div class="col-md-6">
-                    @Html.ActionLink("Detail", "Detail", "Product", new { id = p.Id }, new { @class = "btn btn-primary" })
-                </div> 
-                
                 <div class="col-md-6">
                     @Html.ActionLink("Edit", "Edit", "Product", new { id = p.Id }, new { @class = "btn btn-primary" })
                 </div>

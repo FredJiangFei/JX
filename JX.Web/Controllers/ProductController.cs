@@ -31,7 +31,7 @@ namespace JX.Web.Controllers
 
         public async Task<IActionResult> Index()
         {
-            var serviceUri = GetServiceUri();
+            var serviceUri = ProductServiceUri();
             var partitions = await this._fabricClient.QueryManager.GetPartitionListAsync(new Uri(serviceUri));
             var products = new List<ProductViewModel>();
 
@@ -48,7 +48,7 @@ namespace JX.Web.Controllers
 
                     foreach (var i in items)
                     {
-                        var proxy = GetProxy(i.ActorId);
+                        var proxy = GetActorProxy(i.ActorId);
                         var product = proxy.Get().Result.ToViewModel();
                         product.Id = i.ActorId.GetGuidId();
                         products.Add(product);
@@ -69,15 +69,15 @@ namespace JX.Web.Controllers
         [HttpPost]
         public async Task<IActionResult> Create(ProductCommand command)
         {
-            var productId = Guid.NewGuid();
-            var proxy = GetProxy(new ActorId(productId));
+            await CalculateTotalPrice(command);
+            var proxy = GetActorProxy(new ActorId(Guid.NewGuid()));
             await proxy.Create(command.ToDomain(), CancellationToken.None);
             return RedirectToAction("Index");
         }
 
         public IActionResult Edit(Guid id)
         {
-            var proxy = GetProxy(new ActorId(id));
+            var proxy = GetActorProxy(new ActorId(id));
             var product = proxy.Get().Result.ToCommand();
             product.Id = id;
             return View(product);
@@ -86,14 +86,15 @@ namespace JX.Web.Controllers
         [HttpPost]
         public async Task<IActionResult> Edit(ProductCommand command)
         {
-            var proxy = GetProxy(new ActorId(command.Id));
+            await CalculateTotalPrice(command);
+            var proxy = GetActorProxy(new ActorId(command.Id));
             await proxy.Update(command.ToDomain(), CancellationToken.None);
             return RedirectToAction("Index");
         }
 
         public async Task<IActionResult> Delete(Guid id)
         {
-            var serviceUri = GetServiceUri();
+            var serviceUri = ProductServiceUri();
             var actorToDelete = new ActorId(id);
 
             var proxy = ActorServiceProxy.Create(new Uri(serviceUri), actorToDelete);
@@ -101,35 +102,31 @@ namespace JX.Web.Controllers
             return RedirectToAction("Index");
         }
 
-        public IActionResult Detail(Guid id)
+        private async Task CalculateTotalPrice(ProductCommand command)
         {
-            var proxy = GetProxy(new ActorId(id));
-            var product = proxy.Get().Result.ToCommand();
-            product.Id = id;
-            return View(product);
+            var calculateServiceUri = CalculateServiceUri();
+            var calculateService = ServiceProxy.Create<ICalculate>(new Uri(calculateServiceUri));
+            var totalPrice = await calculateService.CalculatePriceAsync(command.Price, command.Count);
+            command.TotalPrice = totalPrice;
         }
 
-        public async Task<IActionResult> CalculateTotalPrice(int unitPrice, int count)
+        private IProduct GetActorProxy(ActorId actorId)
         {
-            var serviceUri = this._serviceContext.CodePackageActivationContext.ApplicationName
-                             + "/Calculate";
-            var proxy = ServiceProxy.Create<ICalculate>(new Uri(serviceUri));
-            var totalPrice = await proxy.CalculatePriceAsync(unitPrice, count);
-
-            return this.Json(totalPrice);
-        }
-
-        private IProduct GetProxy(ActorId actorId)
-        {
-            var serviceUri = GetServiceUri();
+            var serviceUri = ProductServiceUri();
             var proxy = ActorProxy.Create<IProduct>(actorId, new Uri(serviceUri));
             return proxy;
         }
 
-        private string GetServiceUri()
+        private string ProductServiceUri()
         {
             return this._serviceContext.CodePackageActivationContext.ApplicationName 
                 + "/ProductActorService";
+        }
+
+        private string CalculateServiceUri()
+        {
+            return this._serviceContext.CodePackageActivationContext.ApplicationName 
+                + "/Calculate";
         }
     }
 }

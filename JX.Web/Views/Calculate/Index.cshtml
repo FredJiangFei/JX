@@ -1,9 +1,10 @@
 ﻿
 <div class="row">
-    @using (Html.BeginForm("Plus", "Calculate", FormMethod.Post))
-    {
+    <form asp-controller="Calculate" asp-action="Plus"
+          data-ajax="true" data-ajax-method="POST">
         @Html.TextBox("a");
         @Html.TextBox("b");
         <input type="submit" value="Calculate">
-    }
+    </form>
 </div>
+

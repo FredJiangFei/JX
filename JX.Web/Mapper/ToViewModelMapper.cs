@@ -1,4 +1,5 @@
 ﻿using JX.Product;
+using JX.Product.Interfaces;
 using JX.Web.Command;
 using JX.Web.ViewModels;
 
@@ -12,6 +13,8 @@ namespace JX.Web.Mapper
             {
                 Id = domain.Id,
                 Name = domain.Name,
+                Count = domain.Count,
+                TotalPrice = domain.TotlaPrice,
                 Price = domain.Price
             };
         }
@@ -22,7 +25,9 @@ namespace JX.Web.Mapper
             {
                 Id = domain.Id,
                 Name = domain.Name,
-                Price = domain.Price
+                Count = domain.Count,
+                Price = domain.Price,
+                TotalPrice = domain.TotlaPrice
             };
         }
     }
