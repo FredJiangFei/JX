@@ -5,7 +5,7 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using JX.Calculate;
-using JX.Product.Interfaces;
+using JX.Product;
 using JX.Web.Command;
 using JX.Web.Mapper;
 using JX.Web.ViewModels;

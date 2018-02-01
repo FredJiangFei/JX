@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Runtime.Serialization;
 
-namespace JX.Product.Interfaces
+namespace JX.Product
 {
     [DataContract]
     public class ProductDomain

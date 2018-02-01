@@ -2,7 +2,6 @@
 using System.Threading.Tasks;
 using Microsoft.ServiceFabric.Actors;
 using Microsoft.ServiceFabric.Actors.Runtime;
-using JX.Product.Interfaces;
 
 namespace JX.Product
 {
@@ -10,8 +9,7 @@ namespace JX.Product
     internal class Product : Actor, IProduct
     {
        
-        public Product(ActorService actorService, ActorId actorId)
-            : base(actorService, actorId)
+        public Product(ActorService actorService, ActorId actorId): base(actorService, actorId)
         {
         }
 
@@ -19,8 +17,7 @@ namespace JX.Product
 
         public Task<ProductDomain> Get()
         {
-            var result = StateManager.GetStateAsync<ProductDomain>(StateName);
-            return result;
+            return StateManager.GetStateAsync<ProductDomain>(StateName);
         }
 
         public async Task Create(ProductDomain product, CancellationToken token)

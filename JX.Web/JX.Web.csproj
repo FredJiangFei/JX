@@ -23,7 +23,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\JX.Calculate\JX.Calculate.csproj" />
-    <ProjectReference Include="..\JX.Product.Interfaces\JX.Product.Interfaces.csproj" />
+    <ProjectReference Include="..\JX.Product\JX.Product.csproj" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Microsoft.ServiceFabric.Actors">

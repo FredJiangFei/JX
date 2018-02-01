@@ -1,5 +1,4 @@
 ﻿using JX.Product;
-using JX.Product.Interfaces;
 using JX.Web.Command;
 
 namespace JX.Web.Mapper

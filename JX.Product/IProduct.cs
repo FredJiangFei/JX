@@ -2,7 +2,7 @@
 using System.Threading.Tasks;
 using Microsoft.ServiceFabric.Actors;
 
-namespace JX.Product.Interfaces
+namespace JX.Product
 {
     public interface IProduct : IActor
     {
