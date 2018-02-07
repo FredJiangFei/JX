@@ -23,6 +23,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\JX.Calculate\JX.Calculate.csproj" />
+    <ProjectReference Include="..\JX.Customer\JX.Customer.csproj" />
     <ProjectReference Include="..\JX.Product\JX.Product.csproj" />
   </ItemGroup>
   <ItemGroup>

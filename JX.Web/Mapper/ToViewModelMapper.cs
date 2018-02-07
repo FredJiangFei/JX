@@ -1,4 +1,5 @@
-﻿using JX.Product;
+﻿using JX.Customer;
+using JX.Product;
 using JX.Web.Command;
 using JX.Web.ViewModels;
 
@@ -15,6 +16,16 @@ namespace JX.Web.Mapper
                 Count = domain.Count,
                 TotalPrice = domain.TotlaPrice,
                 Price = domain.Price
+            };
+        }
+
+        public static CustomerViewModel ToViewModel(this CustomerDomain domain)
+        {
+            return new CustomerViewModel
+            {
+                Id = domain.Id,
+                Name = domain.Name,
+                Age = domain.Age
             };
         }
 

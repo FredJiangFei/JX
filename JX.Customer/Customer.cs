@@ -1,9 +1,11 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Fabric;
 using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.ServiceFabric.Data.Collections;
 using Microsoft.ServiceFabric.Services.Communication.Runtime;
+using Microsoft.ServiceFabric.Services.Remoting.Runtime;
 using Microsoft.ServiceFabric.Services.Runtime;
 
 namespace JX.Customer
@@ -14,10 +16,10 @@ namespace JX.Customer
             : base(context)
         { }
 
-      
+
         protected override IEnumerable<ServiceReplicaListener> CreateServiceReplicaListeners()
         {
-            return new ServiceReplicaListener[0];
+            return new[] { new ServiceReplicaListener(this.CreateServiceRemotingListener) };
         }
 
         public readonly string StateName = "Customer";
@@ -25,7 +27,7 @@ namespace JX.Customer
         public async Task<List<CustomerDomain>> Get()
         {
             var result = new List<CustomerDomain>();
-            var tryGetResult = await StateManager.TryGetAsync<IReliableDictionary<string, CustomerDomain>>(StateName);
+            var tryGetResult = await StateManager.TryGetAsync<IReliableDictionary<Guid, CustomerDomain>>(StateName);
             if (tryGetResult.HasValue)
             {
                 using (var tx = StateManager.CreateTransaction())
@@ -45,11 +47,48 @@ namespace JX.Customer
 
         public async Task Save(CustomerDomain customer, CancellationToken token)
         {
-            var dictionary = await StateManager.GetOrAddAsync<IReliableDictionary<string, CustomerDomain>>(StateName);
+            var dictionary = await StateManager.GetOrAddAsync<IReliableDictionary<Guid, CustomerDomain>>(StateName);
 
             using (var tx = StateManager.CreateTransaction())
             {
-                await dictionary.SetAsync(tx, customer.Name, customer);
+                await dictionary.SetAsync(tx, customer.Id, customer);
+                await tx.CommitAsync();
+            }
+        }
+
+        //public async Task Update(CustomerDomain customer, CancellationToken token)
+        //{
+        //    var dictionary = await StateManager.GetOrAddAsync<IReliableDictionary<Guid, CustomerDomain>>(StateName);
+
+        //    using (var tx = StateManager.CreateTransaction())
+        //    {
+        //        var customerGet = await dictionary.TryGetValueAsync(tx, customer.Id);
+        //        if (customerGet.HasValue)
+        //        {
+        //            var updatedUser = new CustomerDomain(customerGet.Value.Id, customerGet.Value.Name, customer.Age);
+        //            await dictionary.SetAsync(tx, customerGet.Value.Id, updatedUser);
+        //            await tx.CommitAsync();
+        //        }
+        //        await tx.CommitAsync();
+        //    }
+        //}
+
+        public async Task<CustomerDomain> GetById(Guid id, CancellationToken token)
+        {
+            var dictionary = await StateManager.GetOrAddAsync<IReliableDictionary<Guid, CustomerDomain>>(StateName);
+            using (var tx = StateManager.CreateTransaction())
+            {
+                var customer = await dictionary.TryGetValueAsync(tx, id);
+                return customer.Value;
+            }
+        }
+
+        public async Task Delete(Guid id, CancellationToken token)
+        {
+            var dictionary = await StateManager.GetOrAddAsync<IReliableDictionary<Guid, CustomerDomain>>(StateName);
+            using (var tx = StateManager.CreateTransaction())
+            {
+                await dictionary.TryRemoveAsync(tx, id);
                 await tx.CommitAsync();
             }
         }

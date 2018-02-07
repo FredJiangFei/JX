@@ -1,20 +1,23 @@
-﻿@model JX.Web.Command.CustomerCommand
-@using (Html.BeginForm("Create", "Customer"))
+﻿@using JX.Web.ViewModels
+@model   JX.Web.ViewModels.CustomerViewModel
+@using (Html.BeginForm("Edit", "Customer"))
 {
     <div class="container">
         <div class="col-md-12 form-group">
-            <h1>Create</h1>
+            <h1>Edit</h1>
         </div>
         <div class="col-md-12 form-group">
             @Html.LabelFor(model => model.Name)
-            @Html.TextBoxFor(model => model.Name, new { @class = "form-control" })
+            @Html.DisplayFor(model => model.Name, new { @class = "form-control" })
         </div>
         <div class="col-md-12 form-group">
             @Html.LabelFor(model => model.Age)
             @Html.TextBoxFor(model => model.Age, new { @class = "form-control" })
         </div>
         <div class="col-md-12 text-right form-group">
-            <input type="submit" value="Create" class="btn-primary btn form-control" />
+            @Html.HiddenFor(model => model.Id)
+            @Html.HiddenFor(model => model.Name)
+            <input type="submit" value="Edit" class="btn-primary btn form-control" />
         </div>
     </div>
 }

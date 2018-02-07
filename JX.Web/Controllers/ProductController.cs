@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Fabric;
 using System.Linq;
+using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
 using JX.Calculate;
@@ -37,8 +38,8 @@ namespace JX.Web.Controllers
 
             foreach (var p in partitions)
             {
-                var partitionKey = ((Int64RangePartitionInformation)p.PartitionInformation).LowKey;
-                var serviceProxy = ActorServiceProxy.Create(new Uri(serviceUri), partitionKey);
+                var key = ((Int64RangePartitionInformation)p.PartitionInformation).LowKey;
+                var serviceProxy = ActorServiceProxy.Create(new Uri(serviceUri), key);
                 ContinuationToken ct = null;
 
                 do

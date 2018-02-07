@@ -1,1 +1,38 @@
-﻿
+﻿@model List<JX.Web.ViewModels.CustomerViewModel>
+
+<div class="row">
+    <h1>List</h1>
+</div>
+
+<div class="row">
+    @Html.ActionLink("Create", "Create", "Customer")
+</div>
+
+<table class="table table-responsive">
+    <thead>
+    <tr>
+        <th>Name</th>
+        <th>Agw</th>
+        <th></th>
+    </tr>
+    </thead>
+
+    @foreach (var p in Model)
+    {
+        <tr>
+            <td>@p.Name</td>
+            <td>@p.Age</td>
+            <td>
+                <div class="col-md-6">
+                    @Html.ActionLink("Edit", "Edit", "Customer", new { id = p.Id , name =p.Name }, new { @class = "btn btn-primary" })
+                </div>
+                <div class="col-md-6">
+                    @using (Html.BeginForm("Delete", "Customer", new { id = p.Id, name = p.Name }, FormMethod.Post))
+                    {
+                        <button class="btn btn-danger" type="submit">Delete</button>
+                    }
+                </div>
+            </td>
+        </tr>
+    }
+</table>
