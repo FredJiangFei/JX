@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Diagnostics;
-using System.Fabric;
 using System.Threading;
-using System.Threading.Tasks;
+using JX.Product.Events;
 using Microsoft.ServiceFabric.Actors.Runtime;
 
 namespace JX.Product
@@ -17,6 +15,10 @@ namespace JX.Product
                    (context, actorType) => new ActorService(context, actorType)).GetAwaiter().GetResult();
 
                 Thread.Sleep(Timeout.Infinite);
+
+                //var bus = new FakeBus();
+                //var detail = new CreateProductEvent();
+                //bus.RegisterHandler<CreateProductEvent>(detail.Handle);
             }
             catch (Exception e)
             {

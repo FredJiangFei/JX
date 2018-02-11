@@ -88,6 +88,9 @@
     <Reference Include="System.ServiceModel" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Events\CreateProductEvent.cs" />
+    <Compile Include="Events\Event.cs" />
+    <Compile Include="FakeBus.cs" />
     <Compile Include="IProduct.cs" />
     <Compile Include="ProductDomain.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -103,6 +106,7 @@
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\Microsoft.ServiceFabric.Actors.2.5.216\build\Microsoft.ServiceFabric.Actors.targets" Condition="Exists('..\packages\Microsoft.ServiceFabric.Actors.2.5.216\build\Microsoft.ServiceFabric.Actors.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

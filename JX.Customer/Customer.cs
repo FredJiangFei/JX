@@ -56,23 +56,6 @@ namespace JX.Customer
             }
         }
 
-        //public async Task Update(CustomerDomain customer, CancellationToken token)
-        //{
-        //    var dictionary = await StateManager.GetOrAddAsync<IReliableDictionary<Guid, CustomerDomain>>(StateName);
-
-        //    using (var tx = StateManager.CreateTransaction())
-        //    {
-        //        var customerGet = await dictionary.TryGetValueAsync(tx, customer.Id);
-        //        if (customerGet.HasValue)
-        //        {
-        //            var updatedUser = new CustomerDomain(customerGet.Value.Id, customerGet.Value.Name, customer.Age);
-        //            await dictionary.SetAsync(tx, customerGet.Value.Id, updatedUser);
-        //            await tx.CommitAsync();
-        //        }
-        //        await tx.CommitAsync();
-        //    }
-        //}
-
         public async Task<CustomerDomain> GetById(Guid id, CancellationToken token)
         {
             var dictionary = await StateManager.GetOrAddAsync<IReliableDictionary<Guid, CustomerDomain>>(StateName);

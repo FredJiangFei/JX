@@ -93,8 +93,7 @@ namespace JX.Web.Controllers
 
         private string CustomerServiceUri()
         {
-            return this._serviceContext.CodePackageActivationContext.ApplicationName
-                + "/Customer";
+            return $"{_serviceContext.CodePackageActivationContext.ApplicationName}/Customer";
         }
 
         private static int GetPartitionKey(string key)
