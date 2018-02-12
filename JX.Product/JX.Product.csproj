@@ -90,6 +90,7 @@
   <ItemGroup>
     <Compile Include="Events\CreateProductEvent.cs" />
     <Compile Include="Events\Event.cs" />
+    <Compile Include="Events\IHandles.cs" />
     <Compile Include="FakeBus.cs" />
     <Compile Include="IProduct.cs" />
     <Compile Include="ProductDomain.cs" />
@@ -97,6 +98,11 @@
     <Compile Include="Product.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="ActorEventSource.cs" />
+    <Compile Include="ReadModel\IReadModel.cs" />
+    <Compile Include="ReadModel\ProductDatabase.cs" />
+    <Compile Include="ReadModel\ProductDto.cs" />
+    <Compile Include="ReadModel\ProductListView.cs" />
+    <Compile Include="ReadModel\ReadModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="PackageRoot\ServiceManifest.xml">
